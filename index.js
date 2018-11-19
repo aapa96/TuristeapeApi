@@ -2,9 +2,10 @@
 
 let mongoose = require('mongoose');
 let app = require('./app');
-let port = process.env.PORT || 3977;
+var db = process.env.MONGODB_URI || 'mongodb://localhost:27017/turisteape';
+let port = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/turisteape',(err,res) =>{
+mongoose.connect(config.db,{useNewUrlParser: true },(err,res) =>{
     if(err){
         throw err;
     }else{
