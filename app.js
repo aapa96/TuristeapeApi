@@ -20,10 +20,12 @@ app.use((req,res,next)=>{
 
 
 let usuarios = require('./Modulos/Usuarios/routes');
-let countries = require('./Modulos/Paises/routes');
+let paises = require('./Modulos/Paises/routes');
+let regiones = require('./Modulos/Regiones/routes');
 
 app.use('/api',usuarios);
-app.use('/api',countries);
+app.use('/api',paises);
+app.use('/api',regiones);
 
  
 module.exports=app;

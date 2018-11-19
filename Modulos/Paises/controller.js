@@ -25,7 +25,16 @@ function createCountry(req,res){
     
 }
 
+function getAll(req,res) {
+    let page = 1;
+    let itemsPerPage =20;
+    Countries.find().sort('name').paginate(page, itemsPerPage, function(err,paises,total){
+        res.status(200).send({paises});
+    });
 
+}
 module.exports = {
-    createCountry
+    createCountry,
+    getAll
+    
 }
