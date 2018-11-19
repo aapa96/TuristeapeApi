@@ -22,10 +22,12 @@ app.use((req,res,next)=>{
 let usuarios = require('./Modulos/Usuarios/routes');
 let paises = require('./Modulos/Paises/routes');
 let regiones = require('./Modulos/Regiones/routes');
+let categorias = require('./Modulos/Categorias/routes');
 
 app.use('/api',usuarios);
 app.use('/api',paises);
 app.use('/api',regiones);
+app.use('/api',categorias);
 
  
 module.exports=app;

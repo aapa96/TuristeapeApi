@@ -9,7 +9,7 @@ function createCategory(req,res){
     var categories = Categories();
     var params = req.body;
     categories.name = params.name;
-    categories.regions = params.regions;
+    // categories.regions = params.regions;
 
     categories.save((err,stored) =>{
         if(err){
