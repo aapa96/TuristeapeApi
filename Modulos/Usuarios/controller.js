@@ -38,9 +38,10 @@ function newUser(req,res){
                 }
             })
         })
+    }else{
+        res.status(404).send("Ingrese su contrasena");
     }
 }
-
 
 function getUser(req,res){
     var params = req.body;
