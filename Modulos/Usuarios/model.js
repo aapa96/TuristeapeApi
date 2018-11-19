@@ -7,7 +7,7 @@ let User = new Schema({
 	surname: String,
 	email: String,
 	password: String,
-	birthay: String,
+	birthday: String,
 	phone: Number,
 });
 
