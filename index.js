@@ -5,7 +5,7 @@ let app = require('./app');
 var db = process.env.MONGODB_URI || 'mongodb://localhost:27017/turisteape';
 let port = process.env.PORT || 3000;
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db,{useNewUrlParser: true },(err,res) =>{
+mongoose.connect(db,{useNewUrlParser: true },(err,res) =>{
     if(err){
         throw err;
     }else{
