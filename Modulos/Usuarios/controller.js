@@ -5,7 +5,7 @@ let path = require('path');
 let fs = require('fs');
 const saltRounds = 10;
 var bcrypt = require('bcrypt-nodejs');
-var jwt = require('../services/jwt');
+var jwt = require('./../jwt');
 
 function test(req,res){
     res.status(200).send({message:"HOLAPAPU{"});
