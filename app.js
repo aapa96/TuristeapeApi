@@ -20,7 +20,7 @@ app.use((req,res,next)=>{
 
 
 let usuarios = require('./Modulos/Usuarios/routes');
-let countries = require('./Modulos/Countries/routes');
+let countries = require('./Modulos/Paises/routes');
 
 app.use('/api',usuarios);
 app.use('/api',countries);
