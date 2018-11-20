@@ -23,11 +23,13 @@ let usuarios = require('./Modulos/Usuarios/routes');
 let paises = require('./Modulos/Paises/routes');
 let regiones = require('./Modulos/Regiones/routes');
 let categorias = require('./Modulos/Categorias/routes');
+let lugares = require('./Modulos/Lugares/routes');
 
 app.use('/api',usuarios);
 app.use('/api',paises);
 app.use('/api',regiones);
 app.use('/api',categorias);
+app.use('/api',lugares);
 
  
 module.exports=app;
