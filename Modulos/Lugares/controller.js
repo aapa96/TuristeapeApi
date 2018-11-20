@@ -42,17 +42,16 @@ function getAll(req,res){
 	}
 	
 	var itemsPerPage =8;
-	Places.find().populate('category').paginate(page, itemsPerPage, function(err,fields,total){
+	Places.find().paginate(page, itemsPerPage, function(err,lugares,total){
 
 		if(err){
 			res.status(500).send({message:'Error en la peticion'});
 		}else{
-			if(!fields){
+			if(!lugares){
 				res.status(404).send({message:'No hay establecimientos'});
 			}else{
 				return res.status(200).send({
-					pages: total,
-					fields: fields
+					lugares: lugares
 				});
 			}
 		}
@@ -70,14 +69,14 @@ function getLugarCategoria(req,res){
 function getLugarId(req,res){
 
 	var id = req.params.id;
-	Places.findById(id,(err,field) =>{
+	Places.findById(id,(err,lugar) =>{
 		if(err){
 			res.status(500).send({message:'Error en la peticion'});
 		}else{
-			if(!field){
+			if(!lugar){
 				res.status(404).send({message:'El establecimiento no existe'});
 			}else{
-				res.status(200).send({field});
+				res.status(200).send({lugar});
 			}
 		}
 	});
