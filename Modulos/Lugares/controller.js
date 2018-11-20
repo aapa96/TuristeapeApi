@@ -83,17 +83,14 @@ function getLugarCategoria(req,res){
 function getLugarId(req,res){
 
 	var id = req.params.id;
-	Field.findById(id,(err,field) =>{
-		if(err){
-			res.status(500).send({message:'Error en la peticion'});
-		}else{
-			if(!field){
-				res.status(404).send({message:'El establecimiento no existe'});
-			}else{
-				res.status(200).send({field});
-			}
-		}
-	});
+	Field.findOne({ _id: id }).
+    populate('category').
+    exec(function (err, place) {
+      if (err) return handleError(err);
+      
+      res.status(200).send(place)
+      // prints "The author is Ian Fleming"
+    });
 }
 
 module.exports = {
