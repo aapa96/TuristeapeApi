@@ -42,7 +42,7 @@ function getAll(req,res){
                 });
 
             })
-    find.populate({path: 'categoria'}).exec((err, lugares)=>{
+    find.populate({path: 'category'}).exec((err, lugares)=>{
       if (err) {
           res.status(500).send({message: "Error en la petición"});
        }
@@ -65,7 +65,7 @@ function getLugarCategoria(req,res){
                 });
 
             })
-    find.populate({path: 'categoria'}).exec((err, lugares)=>{
+    find.populate({path: 'category'}).exec((err, lugares)=>{
       if (err) {
           res.status(500).send({message: "Error en la petición"});
        }
@@ -79,10 +79,31 @@ function getLugarCategoria(req,res){
        }
     });
 }
+function getLugarId(req,res){
+    let id = req.params.id;
+    var find;
+    find = Places.find({_id:id},function(err,lugar){
+                console.log(lugar);
+            })
+    find.populate({path: 'category'}).exec((err, lugar)=>{
+      if (err) {
+          res.status(500).send({message: "Error en la petición"});
+       }
+       else {
+           if (!lugar) {
+               res.status(404).send({message: "No hay lugar"});
+           }
+           else {
+               res.status(200).send({lugar});
+           }
+       }
+    });
+}
 
 module.exports = {
     createPlaces,
     getAll,
-    getLugarCategoria
+    getLugarCategoria,
+    getLugarId
     
 }
