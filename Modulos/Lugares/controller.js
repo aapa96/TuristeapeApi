@@ -35,23 +35,29 @@ function createPlaces(req,res){
 
 }
 function getAll(req,res){
-    var find;
-    find = Places.find({},function(err,lugares){
+	if(req.params.page){
+		var page = req.params.page;
+	}else{
+		var page = 1;
+	}
+	
+	var itemsPerPage =8;
+	Places.find().sort('category').paginate(page, itemsPerPage, function(err,fields,total){
 
-    });
-    find.populate({path: 'category'}).exec((err, lugares)=>{
-      if (err) {
-          res.status(500).send({message: "Error en la petición"});
-       }
-       else {
-           if (!lugares) {
-               res.status(404).send({message: "No hay lugares"});
-           }
-           else {
-               res.status(200).send({lugares});
-           }
-       }
-    });
+		if(err){
+			res.status(500).send({message:'Error en la peticion'});
+		}else{
+			if(!fields){
+				res.status(404).send({message:'No hay establecimientos'});
+			}else{
+				return res.status(200).send({
+					pages: total,
+					fields: fields
+				});
+			}
+		}
+
+	});
 }
 function getLugarCategoria(req,res){
     let category = req.params.id;
@@ -75,24 +81,19 @@ function getLugarCategoria(req,res){
     });
 }
 function getLugarId(req,res){
-    let id = req.params.id;
-    var find;
-    find = Places.find({_id:id},function(err,lugar){
-                console.log(lugar);
-            })
-    find.populate({path: 'category'}).exec((err, lugar)=>{
-      if (err) {
-          res.status(500).send({message: "Error en la petición"});
-       }
-       else {
-           if (!lugar) {
-               res.status(404).send({message: "No hay lugar"});
-           }
-           else {
-               res.status(200).send({lugar});
-           }
-       }
-    });
+
+	var id = req.params.id;
+	Field.findById(id,(err,field) =>{
+		if(err){
+			res.status(500).send({message:'Error en la peticion'});
+		}else{
+			if(!field){
+				res.status(404).send({message:'El establecimiento no existe'});
+			}else{
+				res.status(200).send({field});
+			}
+		}
+	});
 }
 
 module.exports = {
