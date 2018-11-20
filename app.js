@@ -24,12 +24,14 @@ let paises = require('./Modulos/Paises/routes');
 let regiones = require('./Modulos/Regiones/routes');
 let categorias = require('./Modulos/Categorias/routes');
 let lugares = require('./Modulos/Lugares/routes');
+let promociones = require('./Modulos/Promociones/routes');
 
 app.use('/api',usuarios);
 app.use('/api',paises);
 app.use('/api',regiones);
 app.use('/api',categorias);
 app.use('/api',lugares);
+app.use('/api',promociones);
 
  
 module.exports=app;
