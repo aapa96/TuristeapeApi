@@ -83,7 +83,7 @@ function getLugarCategoria(req,res){
 function getLugarId(req,res){
 
 	var id = req.params.id;
-	Field.findOne({ _id: id }).
+	Places.findOne({ _id: id }).
     populate('category').
     exec(function (err, place) {
       if (err) return handleError(err);
