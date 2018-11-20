@@ -62,35 +62,25 @@ function getAll(req,res){
 function getLugarCategoria(req,res){
     let category = req.params.id;
     var find;
-    find = Places.find({category:category},function(err,lugares){
-
+    Places.find({category:category},function(err,lugares){
+        res.status(200).send(lugares) ;
 
             })
-    find.populate({path: 'category'}).exec((err, lugares)=>{
-      if (err) {
-          res.status(500).send({message: "Error en la petición"});
-       }
-       else {
-           if (!lugares) {
-               res.status(404).send({message: "No hay lugares"});
-           }
-           else {
-               res.status(200).send({lugares});
-           }
-       }
-    });
 }
 function getLugarId(req,res){
 
 	var id = req.params.id;
-	Places.findOne({ _id: id }).
-    populate('category').
-    exec(function (err, place) {
-      if (err) res.status(404).send("not found");
-      
-      res.status(200).send(place)
-      // prints "The author is Ian Fleming"
-    });
+	Places.findById(id,(err,field) =>{
+		if(err){
+			res.status(500).send({message:'Error en la peticion'});
+		}else{
+			if(!field){
+				res.status(404).send({message:'El establecimiento no existe'});
+			}else{
+				res.status(200).send({field});
+			}
+		}
+	});
 }
 
 module.exports = {
