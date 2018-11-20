@@ -35,7 +35,10 @@ function createPlaces(req,res){
 
 }
 function getAll(req,res){
-    Places.find().populate({path: 'category'}).exec((err, lugares)=>{
+    find = Places.find({},function(err,lugares){
+
+    });
+    find.populate({path: 'category'}).exec((err, lugares)=>{
       if (err) {
           res.status(500).send({message: "Error en la petición"});
        }
@@ -52,7 +55,11 @@ function getAll(req,res){
 function getLugarCategoria(req,res){
     let category = req.params.id;
     var find;
-    Places.find({category:category}).populate({path: 'category'}).exec((err, lugares)=>{
+    find = Places.find({category:category},function(err,lugares){
+
+
+            })
+    find.populate({path: 'category'}).exec((err, lugares)=>{
       if (err) {
           res.status(500).send({message: "Error en la petición"});
        }
@@ -69,7 +76,10 @@ function getLugarCategoria(req,res){
 function getLugarId(req,res){
     let id = req.params.id;
     var find;
-    find = Places.find({_id:id}).populate({path: 'category'}).exec((err, lugar)=>{
+    find = Places.find({_id:id},function(err,lugar){
+                console.log(lugar);
+            })
+    find.populate({path: 'category'}).exec((err, lugar)=>{
       if (err) {
           res.status(500).send({message: "Error en la petición"});
        }
