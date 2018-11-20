@@ -56,9 +56,33 @@ function getAll(req,res){
        }
     });
 }
+function getLugarCategoria(req,res){
+    let category = req.params.id;
+    var find;
+    find = Places.find({category:category},function(err,lugares){
+                lugares = lugares.sort(function () {
+                    return Math.random() - 0.5
+                });
+
+            })
+    find.populate({path: 'categoria'}).exec((err, lugares)=>{
+      if (err) {
+          res.status(500).send({message: "Error en la petición"});
+       }
+       else {
+           if (!lugares) {
+               res.status(404).send({message: "No hay lugares"});
+           }
+           else {
+               res.status(200).send({lugares});
+           }
+       }
+    });
+}
 
 module.exports = {
     createPlaces,
-    getAll
+    getAll,
+    getLugarCategoria
     
 }

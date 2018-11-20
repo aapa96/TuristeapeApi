@@ -10,6 +10,9 @@ let Places = new Schema({
     description:String,
     website:String,
     phone:String,
+    start:String,
+    end:String,
+    days:String,
     region:{type:Schema.ObjectId,ref:"Regions"},
     category:{type:Schema.ObjectId,ref:"Categoires"},
 });

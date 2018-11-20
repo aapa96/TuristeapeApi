@@ -5,5 +5,6 @@ let api = express.Router();
 
 api.post('/place/new',controller.createPlaces);
 api.get('/place/all',controller.getAll);
+api.get('/place/:id',controller.getLugarCategoria);
 
 module.exports = api;
