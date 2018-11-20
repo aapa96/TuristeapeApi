@@ -35,6 +35,7 @@ function createPlaces(req,res){
 
 }
 function getAll(req,res){
+    var find;
     find = Places.find({},function(err,lugares){
 
     });
