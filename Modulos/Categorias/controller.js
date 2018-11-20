@@ -34,8 +34,24 @@ function getAll(req,res) {
     });
 
 }
+function getCategoryId(req,res){
+
+	var id = req.params.id;
+	Categories.findById(id,(err,category) =>{
+		if(err){
+			res.status(500).send({message:'Error en la peticion'});
+		}else{
+			if(!category){
+				res.status(404).send({message:'El establecimiento no existe'});
+			}else{
+				res.status(200).send({category});
+			}
+		}
+	});
+}
 module.exports = {
     createCategory,
-    getAll
+    getAll,
+    getCategoryId
     
 }
