@@ -5,6 +5,6 @@ let api = express.Router();
 
 api.post('/category/new',controller.createCategory);
 api.get('/category/all',controller.getAll);
-api.get('/category/id',controller.getCategoryId);
+api.get('/category/:id',controller.getCategoryId);
 
 module.exports = api;
