@@ -41,7 +41,7 @@ function getAll(req,res){
 		var page = 1;
 	}
 	
-	var itemsPerPage =8;
+	var itemsPerPage =100;
 	Places.find().paginate(page, itemsPerPage, function(err,lugares,total){
 
 		if(err){
