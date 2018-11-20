@@ -37,7 +37,10 @@ function createPlaces(req,res){
 function getAll(req,res){
     var find;
     find = Places.find(function(err,lugares){
-                 console.log(lugares);
+                lugares = lugares.sort(function () {
+                    return Math.random() - 0.5
+                });
+
             })
     find.populate({path: 'category'}).exec((err, lugares)=>{
       if (err) {
@@ -57,7 +60,9 @@ function getLugarCategoria(req,res){
     let category = req.params.id;
     var find;
     find = Places.find({category:category},function(err,lugares){
-                console.log(lugares);
+                lugares = lugares.sort(function () {
+                    return Math.random() - 0.5
+                });
 
             })
     find.populate({path: 'category'}).exec((err, lugares)=>{
