@@ -86,7 +86,7 @@ function getLugarId(req,res){
 	Places.findOne({ _id: id }).
     populate('category').
     exec(function (err, place) {
-      if (err) return handleError(err);
+      if (err) res.status(404).send("not found");
       
       res.status(200).send(place)
       // prints "The author is Ian Fleming"
