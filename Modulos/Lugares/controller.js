@@ -51,7 +51,7 @@ function getAll(req,res){
 				res.status(404).send({message:'No hay establecimientos'});
 			}else{
 				return res.status(200).send({
-					lugares: lugares
+					lugares
 				});
 			}
 		}
