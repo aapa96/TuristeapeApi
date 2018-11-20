@@ -42,7 +42,7 @@ function getAll(req,res){
 	}
 	
 	var itemsPerPage =8;
-	Places.find().sort('category').paginate(page, itemsPerPage, function(err,fields,total){
+	Places.find().populate({path: 'category'}).paginate(page, itemsPerPage, function(err,fields,total){
 
 		if(err){
 			res.status(500).send({message:'Error en la peticion'});
